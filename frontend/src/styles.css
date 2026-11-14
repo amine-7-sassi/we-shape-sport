@@ -1,0 +1,122 @@
+/* ===== Charte graphique We Shape Sport (Objectif 2) : variables déclarées une seule fois ===== */
+:root {
+  --noir: #111111;
+  --jaune: #FFD60A;
+  --jaune-pale: #FFF3B0;
+  --gris: #A6A6A6;
+  --blanc: #FFFFFF;
+  --succes: #2ECC71;
+  --erreur: #FF5A5F;
+  --carte: #1c1c1c;
+  --bordure: #333333;
+  --rayon-bouton: 8px;
+  --rayon-carte: 12px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--noir);
+  color: var(--blanc);
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+h1, h2, h3 { font-weight: 700; margin: 0 0 12px; }
+h1 { font-size: 32px; line-height: 40px; }
+h2 { font-size: 24px; line-height: 32px; }
+h3 { font-size: 20px; line-height: 28px; }
+p { margin: 0 0 12px; }
+a { color: var(--jaune); }
+small, .secondaire { font-size: 14px; line-height: 20px; color: var(--gris); }
+
+/* Focus clavier visible */
+:focus-visible { outline: 3px solid var(--jaune); outline-offset: 2px; }
+
+.conteneur { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+.page { padding: 32px 0 56px; }
+.titre-jaune { color: var(--jaune); }
+
+/* ===== Boutons ===== */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 44px; padding: 8px 20px;
+  border-radius: var(--rayon-bouton);
+  font: 700 16px 'Poppins', Arial, sans-serif;
+  text-decoration: none; cursor: pointer;
+  border: 2px solid var(--jaune);
+  background: var(--jaune); color: var(--noir);
+}
+.btn:hover { filter: brightness(1.08); }
+.btn-secondaire { background: transparent; color: var(--jaune); }
+.btn-secondaire:hover { background: rgba(255, 214, 10, .12); filter: none; }
+.btn:disabled, .btn[disabled] {
+  background: #2a2a2a; border-color: #2a2a2a; color: var(--gris); cursor: not-allowed; filter: none;
+}
+.btn-bloc { width: 100%; }
+
+/* ===== Cartes ===== */
+.grille { display: grid; gap: 16px; grid-template-columns: 1fr; }
+@media (min-width: 768px) { .grille { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .grille-3 { grid-template-columns: repeat(3, 1fr); } .grille-4 { grid-template-columns: repeat(4, 1fr); } }
+
+.carte {
+  background: var(--carte); border: 1px solid var(--bordure);
+  border-radius: var(--rayon-carte); padding: 20px; overflow: hidden;
+}
+.carte-photo { padding: 0; display: flex; flex-direction: column; }
+.carte-photo .corps { padding: 16px 20px 20px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.carte-photo .corps .btn { margin-top: auto; }
+
+/* Photos des sports : déposer frontend/public/photos/<sport>.jpg ; si le fichier manque, le dégradé s'affiche.
+   Une couche sombre est ajoutée par-dessus pour que le texte reste lisible. */
+.photo {
+  width: 100%; aspect-ratio: 16 / 9; display: flex; align-items: flex-end; padding: 12px;
+  background: linear-gradient(rgba(0, 0, 0, .15), rgba(0, 0, 0, .55)), linear-gradient(135deg, #2b2b2b 0%, #111 55%, #3a3100 100%);
+  background-size: cover; background-position: center;
+  color: var(--blanc); font-weight: 500; font-size: 14px; text-shadow: 0 1px 3px rgba(0, 0, 0, .8);
+}
+.photo.boxe { background-image: linear-gradient(rgba(0,0,0,.15), rgba(0,0,0,.55)), url('/photos/boxe.jpg'), linear-gradient(135deg, #3a0d0d, #111 60%, #4a3b00); }
+.photo.musculation { background-image: linear-gradient(rgba(0,0,0,.15), rgba(0,0,0,.55)), url('/photos/musculation.jpg'), linear-gradient(135deg, #1a2a3a, #111 60%, #4a3b00); }
+.photo.gymnastique { background-image: linear-gradient(rgba(0,0,0,.15), rgba(0,0,0,.55)), url('/photos/gymnastique.jpg'), linear-gradient(135deg, #1f3a2b, #111 60%, #4a3b00); }
+.photo.cross-training { background-image: linear-gradient(rgba(0,0,0,.15), rgba(0,0,0,.55)), url('/photos/cross-training.jpg'), linear-gradient(135deg, #2b2b2b, #111 55%, #3a3100); }
+.photo.yoga { background-image: linear-gradient(rgba(0,0,0,.15), rgba(0,0,0,.55)), url('/photos/yoga.jpg'), linear-gradient(135deg, #2b2b2b, #111 55%, #3a3100); }
+.photo.fitness-cardio { background-image: linear-gradient(rgba(0,0,0,.15), rgba(0,0,0,.55)), url('/photos/fitness-cardio.jpg'), linear-gradient(135deg, #2b2b2b, #111 55%, #3a3100); }
+
+.prix { color: var(--jaune); font-size: 28px; font-weight: 700; line-height: 36px; }
+.prix small { font-size: 14px; font-weight: 400; color: var(--gris); }
+
+/* ===== Formulaires ===== */
+.champ { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+.champ label { font-weight: 500; }
+.champ input, .champ select, .champ textarea {
+  min-height: 44px; padding: 10px 12px;
+  background: var(--blanc); color: var(--noir);
+  border: 2px solid transparent; border-radius: var(--rayon-bouton);
+  font: 400 16px 'Poppins', Arial, sans-serif;
+}
+.champ textarea { min-height: 140px; resize: vertical; }
+.champ input:focus, .champ select:focus, .champ textarea:focus { border-color: var(--jaune); outline: none; }
+.champ.invalide input, .champ.invalide textarea { border-color: var(--erreur); }
+.erreur-champ { color: var(--erreur); font-size: 14px; }
+
+/* ===== Messages ===== */
+.alerte { padding: 12px 16px; border-radius: var(--rayon-bouton); margin-bottom: 16px; font-weight: 500; }
+.alerte-info { background: var(--jaune-pale); color: var(--noir); }
+.alerte-succes { background: rgba(46, 204, 113, .15); border: 1px solid var(--succes); color: var(--succes); }
+.alerte-erreur { background: rgba(255, 90, 95, .15); border: 1px solid var(--erreur); color: var(--erreur); }
+
+/* ===== États (toujours doublés d'un texte) ===== */
+.pastille { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; }
+.pastille::before { content: ''; width: 10px; height: 10px; border-radius: 50%; background: var(--succes); }
+.pastille.complet { color: var(--erreur); }
+.pastille.complet::before { background: var(--erreur); }
+
+/* ===== Tableaux ===== */
+.table-scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 12px; border-bottom: 1px solid var(--bordure); }
+th { color: var(--jaune); font-weight: 700; }
